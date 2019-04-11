@@ -30,7 +30,9 @@ int main(int argc, char *argv[]){
     if (argc >= 2) {
         strncpy(dev_info.serial, argv[1], sizeof(dev_info.serial) - 1);
     }
+
     status = bladerf_open_with_devinfo(&dev, &dev_info);
+    
     if (status != 0) {
         fprintf(stderr, "Unable to open device: %s\n",
                 bladerf_strerror(status));
@@ -43,7 +45,9 @@ int main(int argc, char *argv[]){
     config.bandwidth  = 2000000;
     config.samplerate = 300000;
     config.gain       = 39;
+
     status = configure_channel(dev, &config);
+
     if (status != 0) {
         fprintf(stderr, "Failed to configure RX channel. Exiting.\n");
         goto out;
@@ -55,18 +59,16 @@ int main(int argc, char *argv[]){
     config.bandwidth  = 1500000;
     config.samplerate = 250000;
     config.gain       = -14;
+
     status = configure_channel(dev, &config);
+
     if (status != 0) {
         fprintf(stderr, "Failed to configure TX channel. Exiting.\n");
         goto out;
     }
 
-    /* Application code goes here.
-     *
-     * Don't forget to call bladerf_enable_module() before attempting to
-     * transmit or receive samples!
-     */
-    printf("Hello world naaaaa\n");
+
+
     
     status = sync_rx_meta_sched_example(dev,data);
     if (status!=0){

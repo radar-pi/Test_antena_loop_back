@@ -82,4 +82,24 @@ int configure_channel(struct bladerf *dev,channel_config *c)
     return status;
 }
 
+int file_csv(){
+
+	FILE*archive;
+	archive = fopen("./Data/data_base_so.dat","r+b");
+
+	if(archive==NULL) {
+		perror("Erro ao abrir arquivo!");
+		return -1;
+	}
+	else{
+
+
+		fclose(archive);
+		archive=NULL;
+		return 1;
+		
+	}
+}
+
+
 
