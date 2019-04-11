@@ -1,0 +1,49 @@
+The hardware consists of:
+
+	-> Si5338 clock generator for arbitrary sample rate generation
+	-> Lime Microsystems LMS6002D
+	-> Altera Cyclone IV E (40kLE or 115kLE) FPGA for signal processing and control
+	-> Cypress FX3 USB 3.0 Superspeed Microcontroller
+
+Cypress FX3
+	The FX3 firmware basically has 3 separate modes of operation:
+
+	-> FPGA Loading
+	-> RF Link
+	-> SPI flashing
+	-> The reason for the changes in the operating modes is due to having to
+	reconfigure the GPIF. This design choice was made to alleviate the need for a 
+	very complex GPIF state machine in favor of more complexity on the host side 
+	software.
+
+Altera Cyclone IV E FPGA
+	Software in the FPGA consists of two major pieces:
+
+	-> Hardware Description Language (HDL) for the logic/signal processing
+	C code in a NIOS II processor for control of the LMS6002D, VCTCXO trim DAC and 
+	Si5338 PLL
+
+Specifications(Alimentação), link:https://github.com/Nuand/bladeRF/wikibladeRF-	
+Power-Consumption
+		->The DC barrel jack on the bladeRF requires a 5 V adapter, which should be 
+		rated to supply at least 1.5 A. Many supplies will experience significant 
+		voltage droop as the current draw approaches as little as 50% of the rated 
+		maximum. 
+
+		If the voltage droops too low, it will degrade the performance of the
+    bladeRF.
+		Voltage: 5 V
+		Current: 1.5 - 3 A
+		Plug inner diameter: 2.5 mm (V+)
+		Plug outer diameter: 5.5 mm (GND)
+		Over-voltage, over-current, short-circuit protection: recommended
+
+		The DC barrel jack on the bladeRF requires a 5 V adapter, which should be 
+		rated to supply at least 1.5 A. Many supplies will experience significant 
+    voltage droop as the current draw approaches as little as 50% of the rated 
+    maximum. 
+
+
+
+
+
